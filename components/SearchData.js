@@ -18,7 +18,8 @@ class SearchData extends React.Component {
     componentDidMount() {    
         /* API request to get products from prestashop */
         getProductsFromApi().then(data => {
-            this.setState( { isLoading: false, dataSource: data.products} )
+            this.setState( { isLoading: false, dataSource: data.products});
+            //console.log(this.state.dataSource);
         })
     }
 
@@ -40,7 +41,6 @@ class SearchData extends React.Component {
     }
 
     render() {
-    
         return (  
             <View style={styles.main_container}>
                 <FlatList data={this.state.dataSource} 

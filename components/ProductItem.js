@@ -5,10 +5,11 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 class ProductItem extends React.Component {
 
+    img_url_http = 'http://192.168.10.11/presta_api_ssl/';  
+
     constructor(props) {
         super(props);
         //this.state = { product: [] }
-        
     }
 
     render() {
@@ -20,7 +21,9 @@ class ProductItem extends React.Component {
             // En react native on utilise TouchableOpacity
             <TouchableOpacity style={styles.main_container}> 
             {/*source={{uri: getImageFromApi(product.poster_path)}}*/}
-                <Image style={styles.image} source={require('../img/robe-alana.jpg')} /> 
+                {/*<Image style={styles.image} source={{uri:'http://192.168.10.11/presta_api_ssl/2-medium_default/hummingbird-printed-t-shirt.jpg'}} /> */}
+                <Image style={styles.image} source={{uri: this.img_url_http + product.id_default_image + '-large_default/' + product.link_rewrite + '.jpg'}} />
+
                 <View style={styles.content_container}>
 
                     <View style={styles.header_container}>
