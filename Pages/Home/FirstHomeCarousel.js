@@ -3,13 +3,12 @@
 import React from 'react';
 import { StyleSheet, Dimensions, TouchableOpacity  } from 'react-native';
 
-import FullscreenImage from '../FullscreenImage';
+import FullscreenImage from './FullscreenImage';
 
 
-export default class Banner extends React.Component {
+export default class FirstHomeCarousel extends React.Component {
     
     render() {
-        
         
         return (
             <TouchableOpacity style={styles.banner}> 

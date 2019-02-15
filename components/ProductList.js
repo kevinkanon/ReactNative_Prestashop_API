@@ -3,9 +3,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
-class ProductItem extends React.Component {
+class ProductList extends React.Component {
 
-    img_url_http = 'http://192.168.10.11/presta_api_ssl/';  
+    img_url_http = 'http://192.168.10.74/presta_api_ssl/';  
 
     constructor(props) {
         super(props);
@@ -14,12 +14,13 @@ class ProductItem extends React.Component {
 
     render() {
 
-        console.log(this.props);   
-        const { product } = this.props; // ES6 code <=> const product = this.props.product; & const displayDetailForProduct = this.props.displayDetailForProduct
+        //console.log(this.props);   
+        const { product, displayDetailForOneProduct } = this.props // ES6 code <=> const product = this.props.product; & const displayDetailForProduct = this.props.displayDetailForProduct
+
         return (
             // "onPress" n'existe pas sur le component View ni même "onClick", "onTouch" ... Il n'y a aucun moyen de récupérer un évènement sur un component View.
             // En react native on utilise TouchableOpacity
-            <TouchableOpacity style={styles.main_container}> 
+            <TouchableOpacity style={styles.main_container} onPress={() => displayDetailForOneProduct(product.id)}> 
             {/*source={{uri: getImageFromApi(product.poster_path)}}*/}
                 {/*<Image style={styles.image} source={{uri:'http://192.168.10.11/presta_api_ssl/2-medium_default/hummingbird-printed-t-shirt.jpg'}} /> */}
                 <Image style={styles.image} source={{uri: this.img_url_http + product.id_default_image + '-large_default/' + product.link_rewrite + '.jpg'}} />
@@ -33,8 +34,8 @@ class ProductItem extends React.Component {
                     <View style={styles.description_container}>
                         <Text style={styles.description_text} numberOfLines={6}>{product.description}</Text>   
                     </View>
-            {/*numberOfLines={6}*/}
-            {/* La propriété numberOfLines permet de couper un texte si celui-ci est trop long, il suffit de définir un nombre maximum de ligne */}       
+                {/*numberOfLines={6}*/}
+                {/* La propriété numberOfLines permet de couper un texte si celui-ci est trop long, il suffit de définir un nombre maximum de ligne */}       
                 </View>
             </TouchableOpacity>
         )
@@ -52,4 +53,4 @@ const styles = StyleSheet.create({
     description_text: { fontStyle: 'italic', color: '#666666' },
 })
 
-export default ProductItem;
+export default ProductList;

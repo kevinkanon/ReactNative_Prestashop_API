@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ActivityIndicator, FlatList } from 'react-native';
 
 import { getProductsFromApi } from '../API/Prestashop_API'; 
-import ProductItem from './ProductItem';
+import ProductList from './ProductList';
 
 class SearchData extends React.Component {
 
@@ -40,22 +40,30 @@ class SearchData extends React.Component {
         } 
     }
 
+    
+
+    _displayDetailForOneProduct = (idProduct) => {
+        //console.log("Display film with id " + idProduct)
+        this.props.navigation.navigate("ProductDetail", { idProduct: idProduct })
+    }
+
     render() {
+        //console.log(this.props);
         return (  
             <View style={styles.main_container}>
-                <FlatList data={this.state.dataSource} 
-                          keyExtractor={(item) => item.id.toString()} 
-                          renderItem={({item}) => ( 
-                            <ProductItem product={item} /> 
-                        )}
+                <FlatList 
+                    data={this.state.dataSource} 
+                    keyExtractor={(item) => item.id.toString()} 
+                    renderItem={({item}) => ( <ProductList product={item} displayDetailForOneProduct={this._displayDetailForOneProduct}/> )}
                 />
 
                 {this._displayLoading()}   
             </View>
-            );
-        }
-
+        );
     }
+
+
+}
 
 const styles = StyleSheet.create({
     main_container: { flex: 1 },
